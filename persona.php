@@ -1,7 +1,7 @@
 <?php
 
 include 'config.php';
-    
+error_reporting(0);  
 $objConfig = new configuration;
 $dbConn=$objConfig->getConection();
 
