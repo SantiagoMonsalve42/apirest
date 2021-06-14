@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-
+error_reporting(0);
 $objConf = new configuration;
 $objConn = $objConf->getConection();
 
