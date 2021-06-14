@@ -5,9 +5,341 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
     <title>Api Restful</title>
 </head>
 <body>
-    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="index.html" style="margin-left: 25px;">API RESTFUL PARA PRUEBAS</a>
+        </nav>
+
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">API RESTFUL PARA PRUEBAS</h1>
+            <p class="lead text-muted">API realizada por Andres Santiago Monsalve Salinas en PHP para realizar pruebas y para ser consumida en aplicaciones </p>
+            <p>
+              <a href="#documentation" class="btn btn-primary my-2">Documentación</a>
+              <a href="#database" class="btn btn-secondary my-2">Esquema de la base de datos</a>
+            </p>
+          </div>
+        </div>
+      </section>
+      <div class="container">
+            <div class="row" id="documentation">
+                <div class="col-xl-6 col-lg-6 col-sm-12 col-md-12">
+                    <div class="card" >
+                        <div class="card-body">
+                            <h2 class="fw-light">Persona</h2>
+                            <div style="overflow-x:auto;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">método</th>
+                                        <th scope="col">URL</th>
+                                        <th scope="col">Parámetros</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="persona">/persona</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="persona?id=10000">/persona?id=10000</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>POST</td>
+                                            <td><a href="#documentation">/persona</a> </td>
+                                            <td>id_td,id_car,id_emp,ndoc,n1,n2,a1,a2,mail,fnac</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PUT</td>
+                                            <td><a href="#documentation">/persona?id=10000&correo=nuevo@nuevo.es</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PATCH</td>
+                                            <td><a href="#documentation">/persona?id=10000&correo=nuevo@nuevo.es</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DELETE</td>
+                                            <td><a href="#documentation">/persona?id=10000</a> </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-sm-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="fw-light">Estudios</h2>
+                            <div style="overflow-x:auto;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">método</th>
+                                        <th scope="col">URL</th>
+                                        <th scope="col">Parámetros</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="estudios">/estudios</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="estudios?id_p=10000">/estudios?id_p=10000</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>POST</td>
+                                            <td><a href="#documentation">/estudios</a> </td>
+                                            <td>id_p,id_ins,d,fi,ff</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PUT</td>
+                                            <td><a href="#documentation">/estudios?d=new&ff=1995-12-12&fi=2005-12-12&id_est=10</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PATCH</td>
+                                            <td><a href="#documentation">/estudios?d=new&ff=1995-12-12&fi=2005-12-12&id_est=10</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DELETE</td>
+                                            <td><a href="#documentation">/estudios?id_est=10</a> </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-sm-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="fw-light">Empresas</h2>
+                            <div style="overflow-x:auto;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">método</th>
+                                        <th scope="col">URL</th>
+                                        <th scope="col">Parámetros</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="empresa">/empresa</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="empresa?id_p=7000&type=0">/empresa?id_p=7000&type=0</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="empresa?id=7000">/empresa?id=7000</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>POST</td>
+                                            <td><a href="#documentation">/empresa</a> </td>
+                                            <td>id_td,ndoc,n,c,t</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PUT</td>
+                                            <td><a href="#documentation">/empresa?c=nuevo@correo.es&t=3877471&id_e=7000</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PATCH</td>
+                                            <td><a href="#documentation">/empresa?c=nuevo@correo.es&t=3877471&id_e=7000</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DELETE</td>
+                                            <td><a href="#documentation">/empresa?id_e=7000</a> </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-sm-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="fw-light">Experiencia</h2>
+                            <div style="overflow-x:auto;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">método</th>
+                                        <th scope="col">URL</th>
+                                        <th scope="col">Parámetros</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="experiencia">/experiencia</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="experiencia?id_p=10001">/experiencia?id_p=10001</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>POST</td>
+                                            <td><a href="#documentation">/experiencia</a> </td>
+                                            <td>id_p,d,fi,ff</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PUT</td>
+                                            <td><a href="#documentation">/experiencia?id_exp=1&d=bachillerato&fi=2020-12-12&ff=2021-12-12</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PATCH</td>
+                                            <td><a href="#documentation">/experiencia?id_exp=1&d=bachillerato&fi=2020-12-12&ff=2021-12-12</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DELETE</td>
+                                            <td><a href="#documentation">/experiencia?id_exp=1</a> </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-sm-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="fw-light">Instituciones Educativas</h2>
+                            <div style="overflow-x:auto;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">método</th>
+                                        <th scope="col">URL</th>
+                                        <th scope="col">Parámetros</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="insteducativa">/insteducativa</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>POST</td>
+                                            <td><a href="#documentation">/insteducativa</a> </td>
+                                            <td>n</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PUT</td>
+                                            <td><a href="#documentation">/insteducativa?name=nueva&id_ins=10003</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PATCH</td>
+                                            <td><a href="#documentation">/insteducativa?name=nueva&id_ins=10003</a> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DELETE</td>
+                                            <td><a href="#documentation">/insteducativa?id_ins=10003</a> </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-sm-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="fw-light">Cargos</h2>
+                            <div style="overflow-x:auto;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">método</th>
+                                        <th scope="col">URL</th>
+                                        <th scope="col">Parámetros</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="cargo">/cargo</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>GET</td>
+                                            <td><a href="cargo?id_c=3">/cargo?id_c=3</a></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>POST</td>
+                                            <td><a href="#documentation">/cargo</a>  </td>
+                                            <td>desc</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row" id="database">
+                <section class="py-5 text-center container">
+                    <div class="row py-lg-5">
+                      <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light">ESQUEMA BASE DE DATOS</h1>
+                      </div>
+                    </div>
+                  </section>
+                  <img src="images/esquema.JPG" class="img-fluid" alt="Responsive image">
+            </div>
+      </div>
+      <br>
+      <br><br><br><br>
+      <hr>
+      <footer class="text-center text-white fixed-bottom" style="background-color: #21081a;">
+        <!-- Grid container -->
+        <div class="container p-1"></div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2021 Copyright:
+          <a class="text-white" href="https://github.com/SantiagoMonsalve42">Perfil de GitHub</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
 </body>
 </html>

@@ -1,0 +1,12 @@
+.card{
+    margin-top: 25px;
+}
+@media screen and (max-width: 320px) {
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+}
+footer{
+  clear: both;
+}
