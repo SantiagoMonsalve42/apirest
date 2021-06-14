@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     
-    if(isset($_POST)){
+    if(count($_POST)){
         $parametros = $_POST;
         $sqlStatement="INSERT INTO 
                         empresa(id_tipo_documento,numero_documento,nombre,correo,telefono_empresa)
@@ -76,7 +76,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 if($_SERVER['REQUEST_METHOD'] == "PUT" || $_SERVER['REQUEST_METHOD'] == "PATCH"){
 
-    if(isset($_GET)){
+    if(count($_GET)){
         $parametros = $_GET;
         $sqlStatement="UPDATE empresa 
                             SET correo=:c, telefono_empresa=:t
