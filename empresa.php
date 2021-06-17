@@ -79,14 +79,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 }
 
 if($_SERVER['REQUEST_METHOD'] == "PUT" || $_SERVER['REQUEST_METHOD'] == "PATCH"){
+    parse_str(file_get_contents("php://input"),$put_vars);
 
-    if(count($_GET)){
-        $parametros = $_GET;
+    if(sizeof($put_vars) == 3){
         $sqlStatement="UPDATE empresa 
                             SET correo=:c, telefono_empresa=:t
                             WHERE id_empresa=:id_e";
         $sql = $objConn->prepare($sqlStatement);
-        $objConf->getParams($sql,$parametros);         
+        $sql->bindValue(':c',$put_vars['c']);    
+        $sql->bindValue(':t',$put_vars['t']); 
+        $sql->bindValue(':id_e',$put_vars['id_e']);  
         if($sql->execute()){
             header("HTTP/1.1 200 OK");
         }else{
