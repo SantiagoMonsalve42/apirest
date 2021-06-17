@@ -55,14 +55,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'PUT' || $_SERVER['REQUEST_METHOD'] == 'PATCH'){
-
-    if(count($_GET)){
-        $parametros=$_GET; 
+    parse_str(file_get_contents("php://input"),$put_vars);
+    if(sizeof($put_vars) == 4){
         $sqlStatement="UPDATE experiencia_laboral 
                             SET  descripcion=:d, fecha_inicio=:fi, fecha_final=:ff
                             WHERE id_experiencia_laboral = :id_exp";
          $sql = $objConn->prepare($sqlStatement);
-         $objConf->getParams($sql,$parametros);
+         $sql->bindValue(':d',$put_vars['d']);    
+         $sql->bindValue(':fi',$put_vars['fi']); 
+         $sql->bindValue(':ff',$put_vars['ff']);  
+         $sql->bindValue(':id_exp',$put_vars['id_exp']);
          if($sql -> execute()){
              header("HTTP/1.1 200 OK");
          }else{

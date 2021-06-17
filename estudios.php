@@ -55,14 +55,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'PUT' || $_SERVER['REQUEST_METHOD'] == 'PATCH'){
+    parse_str(file_get_contents("php://input"),$put_vars);
 
-    if(count($_GET)){
-        $parametros=$_GET; 
+    if(sizeof($put_vars) == 4){
         $sqlStatement="UPDATE estudios 
                             SET  descripcion=:d, fecha_inicio=:fi, fecha_final=:ff
                             WHERE id_estudios = :id_est";
          $sql = $objConn->prepare($sqlStatement);
-         $objConf->getParams($sql,$parametros);
+         
+        $sql->bindValue(':d',$put_vars['d']);    
+        $sql->bindValue(':fi',$put_vars['fi']); 
+        $sql->bindValue(':ff',$put_vars['ff']);  
+        $sql->bindValue(':id_est',$put_vars['id_est']); 
          if($sql -> execute()){
              header("HTTP/1.1 200 OK");
          }else{

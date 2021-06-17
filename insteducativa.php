@@ -36,16 +36,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'PUT' || $_SERVER['REQUEST_METHOD'] == 'PATCH'){
-    $parametros=$_GET;
+    parse_str(file_get_contents("php://input"),$put_vars);
+    if(sizeof($put_vars) == 2){
     $sqlStatement="UPDATE institucion_educativa SET nombre=:name 
             WHERE id_institucion_educativa=:id_ins";
     $sql = $objConn->prepare($sqlStatement);
-    $objConf->getParams($sql,$parametros);
-    if($sql -> execute()){
-        header("HTTP/1.1 200 OK"); 
+    $sql->bindValue(':name',$put_vars['name']);    
+    $sql->bindValue(':id_ins',$put_vars['id_ins']); 
+        if($sql -> execute()){
+            header("HTTP/1.1 200 OK"); 
+        }else{
+            header( 'HTTP/1.1 400 BAD REQUEST' ); 
+        }
     }else{
         header( 'HTTP/1.1 400 BAD REQUEST' ); 
-    }
+    }   
     exit();
 }
 

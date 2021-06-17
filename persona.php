@@ -62,15 +62,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
     //update
 if($_SERVER['REQUEST_METHOD'] == 'PUT' || $_SERVER['REQUEST_METHOD'] == 'PATCH'){
-    $parametros = $_GET;
+    parse_str(file_get_contents("php://input"),$put_vars);
+    
+    if(sizeof($put_vars) == 2){
     $sql="UPDATE persona SET correo=:correo 
             WHERE id_persona=:id";
     $statement = $dbConn->prepare($sql);
-    $objConfig->getParams($statement,$parametros);
-    if($statement->execute()){
-        header("HTTP/1.1 200 OK"); 
+    
+    $statement->bindValue(':correo',$put_vars['correo']); 
+    $statement->bindValue(':id',$put_vars['id']); 
+        if($statement->execute()){
+            header("HTTP/1.1 200 OK"); 
+        }else{
+            header( 'HTTP/1.1 400 BAD REQUEST' );
+        }
     }else{
-        header( 'HTTP/1.1 400 BAD REQUEST' );
+       header( 'HTTP/1.1 400 BAD REQUEST' );
     }
     exit();
 }
