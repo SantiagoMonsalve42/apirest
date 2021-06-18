@@ -36,9 +36,8 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
             $sql = $objConn->prepare($sqlStatement);
             $sql->bindValue(':id',$_GET['id']);
             if($sql->execute()){
-                $sql->setFetchMode(PDO::FETCH_ASSOC);
                 header("HTTP/1.1 200 OK");
-                echo json_encode( $sql->fetchAll()  );
+                echo json_encode( $sql->fetch(PDO::FETCH_ASSOC));
             }else{
                 header( 'HTTP/1.1 400 BAD REQUEST' );
             }

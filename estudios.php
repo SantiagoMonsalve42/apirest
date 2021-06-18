@@ -17,14 +17,14 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if($sql -> execute()){
             $sql->setFetchMode(PDO::FETCH_ASSOC);
             header("HTTP/1.1 200 OK");
-            echo json_encode( $sql->fetchAll()  );
+            echo json_encode( $sql->fetchAll());
         }else{
             header( 'HTTP/1.1 400 BAD REQUEST' );
         }
     }else{
         $sqlStatement="select * from estudios ";
-        $sql = $objConn ->prepare($sqlStatement);
-        if($sql -> execute()){
+        $sql = $objConn->prepare($sqlStatement);
+        if($sql->execute()){
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");
         echo json_encode( $sql->fetchAll()  );

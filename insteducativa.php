@@ -9,12 +9,22 @@ $objConf = new configuration;
 $objConn = $objConf->getConection();
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $sqlStatement= "SELECT * FROM institucion_educativa";
+    if(isset($_GET['id_e'])){
+        $sqlStatement= "SELECT * FROM institucion_educativa 
+                            where id_institucion_educativa=:id_e ";
+        $sql = $objConn -> prepare($sqlStatement);
+        $sql->bindValue('id_e',$_GET['id_e']);
+        $sql->execute();
+        header("HTTP/1.1 200 OK");
+        echo json_encode( $sql->fetch(PDO::FETCH_ASSOC));
+    }else{
+    $sqlStatement= "SELECT * FROM institucion_educativa order by id_institucion_educativa desc";
     $sql = $objConn -> prepare($sqlStatement);
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");
     echo json_encode($sql->fetchAll());
+    }
     exit();
 }
 
