@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     else{
         $sqlStatement="SELECT * FROM tipo_documento td,persona p,cargo c
                         where td.id_tipo_documento=p.id_tipo_documento
-                                and p.id_cargo = c.id_cargo";
+                                and p.id_cargo = c.id_cargo order by p.id_persona DESC";
         $sql = $dbConn->prepare($sqlStatement);
         $sql->execute();
         $sql->setFetchMode(PDO::FETCH_ASSOC);
