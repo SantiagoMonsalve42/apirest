@@ -13,9 +13,10 @@ $dbConn=$objConfig->getConection();
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     if( isset($_GET['id']) ){
-        $sqlStatement="SELECT * FROM tipo_documento td,persona p,cargo c
+        $sqlStatement="SELECT * FROM tipo_documento td,persona p,cargo c,empresa e
                         where td.id_tipo_documento=p.id_tipo_documento
                                 and p.id_cargo = c.id_cargo
+                                and e.id_empresa = p.id_empresa
                                 and id_persona=:id";
         $sql = $dbConn->prepare($sqlStatement);
         $sql->bindValue(':id',$_GET['id']);
@@ -56,6 +57,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         header("HTTP/1.1 200 OK"); 
     }else{
         header( 'HTTP/1.1 400 BAD REQUEST' );
+        echo $statement->error_log;
     }
     exit();
 
