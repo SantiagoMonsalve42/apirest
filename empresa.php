@@ -62,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(count($_POST)){
         $parametros = $_POST;
         $sqlStatement="INSERT INTO 
-                        empresa(id_tipo_documento,numero_documento,nombre,correo,telefono_empresa)
+                        empresa(id_tipo_documento,numero_documento,nombre_empresa,correo,telefono_empresa)
                         VALUES 
                         (:id_td,:ndoc,:n,:c,:t)";
         $sql = $objConn->prepare($sqlStatement);
