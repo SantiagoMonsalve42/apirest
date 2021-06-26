@@ -17,7 +17,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $sql->execute();
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");
-        echo json_encode( $sql->fetchAll()  );
+            $array = array(
+                "status" => "ok",
+                "code" => "200",
+                "resul" => $sql->fetchAll()
+            );
+            echo json_encode($array);
 
         exit();
 
