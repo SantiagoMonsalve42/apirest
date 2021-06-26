@@ -23,7 +23,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $sql->execute();
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");
-        echo json_encode( $sql->fetchAll()  );
+        $array = array(
+            "status" => "ok",
+            "code" => "200",
+            "resul" =>$sql->fetchAll()
+        );
+        echo json_encode($array);
 
         exit();
 
@@ -37,7 +42,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $sql->execute();
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");
-        echo json_encode( $sql->fetchAll()  );
+        $array = array(
+            "status" => "ok",
+            "code" => "200",
+            "resul" =>$sql->fetchAll()
+        );
+        echo json_encode($array);
 
         exit();
     }
@@ -56,9 +66,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if($statement->execute()){
         header("HTTP/1.1 200 OK"); 
+        $array = array(
+            "status" => "ok",
+            "code" => "200"
+        );
+        echo json_encode($array);
     }else{
+        $array = array(
+            "status" => "bar request",
+            "code" => "400"
+        );
         header( 'HTTP/1.1 400 BAD REQUEST' );
-        echo $statement->error_log;
+        echo json_encode($array);
     }
     exit();
 
@@ -76,11 +95,26 @@ if($_SERVER['REQUEST_METHOD'] == 'PUT' || $_SERVER['REQUEST_METHOD'] == 'PATCH')
     $statement->bindValue(':id',$put_vars['id']); 
         if($statement->execute()){
             header("HTTP/1.1 200 OK"); 
+            $array = array(
+                "status" => "ok",
+                "code" => "200"
+            );
+            echo json_encode($array);
         }else{
+            $array = array(
+                "status" => "bar request",
+                "code" => "400"
+            );
             header( 'HTTP/1.1 400 BAD REQUEST' );
+            echo json_encode($array);
         }
     }else{
-       header( 'HTTP/1.1 400 BAD REQUEST' );
+        $array = array(
+            "status" => "bar request",
+            "code" => "400"
+        );
+        header( 'HTTP/1.1 400 BAD REQUEST' );
+        echo json_encode($array);
     }
     exit();
 }
@@ -91,9 +125,19 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
         $sql = $dbConn->prepare("delete from persona where id_persona=:id");
         $sql->bindValue(':id',$_GET['id']);
         $sql->execute();
-        header("HTTP/1.1 200 OK");
+        header("HTTP/1.1 200 OK"); 
+        $array = array(
+            "status" => "ok",
+            "code" => "200"
+        );
+        echo json_encode($array);
     }else{
+        $array = array(
+            "status" => "bar request",
+            "code" => "400"
+        );
         header( 'HTTP/1.1 400 BAD REQUEST' );
+        echo json_encode($array);
     }
     exit();
    

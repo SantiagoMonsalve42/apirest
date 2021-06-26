@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-06-2021 a las 12:37:54
+-- Tiempo de generación: 25-06-2021 a las 22:58:43
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.2.32
 
@@ -37,15 +37,9 @@ CREATE TABLE `cargo` (
 --
 
 INSERT INTO `cargo` (`id_cargo`, `descripcion_cargo`) VALUES
-(14, 'Administrador de base de datos'),
 (3, 'analista de pruebas'),
 (1, 'analista funcional'),
-(2, 'arquitecto de soluciones'),
-(16, 'Dealer a tiempo completo'),
-(15, 'Desarrollador Angular'),
-(12, 'ingeniero industrial'),
-(13, 'ingeniero químico'),
-(6, 'Instructor de ingles');
+(2, 'arquitecto de soluciones');
 
 -- --------------------------------------------------------
 
@@ -57,7 +51,7 @@ CREATE TABLE `empresa` (
   `id_empresa` int(11) NOT NULL,
   `id_tipo_documento` int(11) DEFAULT NULL,
   `numero_documento` int(20) NOT NULL,
-  `nombre_empresa` varchar(50) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
   `correo` varchar(50) NOT NULL,
   `telefono_empresa` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -66,17 +60,83 @@ CREATE TABLE `empresa` (
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`id_empresa`, `id_tipo_documento`, `numero_documento`, `nombre_empresa`, `correo`, `telefono_empresa`) VALUES
-(7000, 9951, 50502020, 'ecomoda', 'santi@monsa.com', 3183297055),
-(7001, 9951, 20205050, 'ebs', 'santi@pruebas.iso', 3183297050),
-(7003, 9952, 79444056, 'EcoPlaza S.A.S', 'ecoplaza@outlook.com', 3183297055),
-(7004, 9951, 51981212, 'Laravel PHP', 'laravel@development.com', 3145267489),
-(7008, 9952, 5198121, 'Andres Monsalve', 'asmonsalves@correo.ud.com', 3183297055),
-(7009, 9952, 30202040, 'Michoacan', 'mail@index.com', 3877474),
-(7011, 9950, 20201010, 'mis cosas', 'mail@mail.com.es', 3877470),
-(7012, 9952, 30201040, 'mas pruebas', 'sirve@ojala.co', 3877474),
-(7013, 9951, 9912225, 'intergrupo', 'pruebas@intergrupo.com', 3877474),
-(7014, 9952, 123456789, 'SO', 'so@so.com', 3544141);
+INSERT INTO `empresa` (`id_empresa`, `id_tipo_documento`, `numero_documento`, `nombre`, `correo`, `telefono_empresa`) VALUES
+(7000, 9951, 50502020, 'ecomoda', 'santi@prueba.es', 318329705),
+(7001, 9951, 20205050, 'ebs', 'santi@prueba.es', 3183297050),
+(7003, 9950, 503010, '10201', '1010', 10201);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudios`
+--
+
+CREATE TABLE `estudios` (
+  `id_estudios` int(11) NOT NULL,
+  `id_persona` int(11) DEFAULT NULL,
+  `id_institucion_educativa` int(11) DEFAULT NULL,
+  `descripcion` varchar(75) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_final` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estudios`
+--
+
+INSERT INTO `estudios` (`id_estudios`, `id_persona`, `id_institucion_educativa`, `descripcion`, `fecha_inicio`, `fecha_final`) VALUES
+(10, 10000, 10000, 'ingeniería en telemática', '2021-06-01', '2021-06-13'),
+(11, 10001, 10001, 'ingeniería en electrónica', '2021-06-01', '2021-06-13'),
+(12, 10000, 10001, 'dba', '2021-06-01', '2021-06-15');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `experiencia_laboral`
+--
+
+CREATE TABLE `experiencia_laboral` (
+  `id_experiencia_laboral` int(11) NOT NULL,
+  `id_persona` int(11) DEFAULT NULL,
+  `descripcion` varchar(75) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_final` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `experiencia_laboral`
+--
+
+INSERT INTO `experiencia_laboral` (`id_experiencia_laboral`, `id_persona`, `descripcion`, `fecha_inicio`, `fecha_final`) VALUES
+(1, 10000, 'desarrollador web angular y php', '2021-06-01', '2021-06-13'),
+(2, 10001, 'desarrollador web vue.js y spring boot', '2021-06-01', '2021-06-13');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `institucion_educativa`
+--
+
+CREATE TABLE `institucion_educativa` (
+  `id_institucion_educativa` int(11) NOT NULL,
+  `nombre` varchar(75) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `institucion_educativa`
+--
+
+INSERT INTO `institucion_educativa` (`id_institucion_educativa`, `nombre`) VALUES
+(10000, 'Universidad Distrital FJDC'),
+(10001, 'Universidad Nacional De Colombia'),
+(10003, 'Harvard University.'),
+(10004, 'University of Cambridge.'),
+(10005, 'Columbia University.'),
+(10006, 'University of Oxford.'),
+(10007, 'Yale University.'),
+(10008, 'Stanford University.'),
+(10009, 'University of Paris (Sorbonne):'),
+(10011, 'colegio');
 
 -- --------------------------------------------------------
 
@@ -103,11 +163,9 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`id_persona`, `id_tipo_documento`, `id_cargo`, `id_empresa`, `numero_documento`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `correo`, `fecha_nacimiento`) VALUES
-(10000, 9950, 1, 7001, 1073528769, 'andres', 'santiago', 'monsalve', 'salinas', 'santi@pruebas.wab', '2021-06-01'),
-(10001, 9950, 2, 7000, 1073528766, 'daniel', 'arturo', 'monsalve', 'salinas', 'santi@monsa.com', '2021-06-13'),
-(10007, 9950, 2, 7001, 1073568947, 'santiago', 'andres', 'orduz', 'perez', 'santi@pruebas.iso', '2021-06-12'),
-(10011, 9950, 15, 7003, 79444052, 'andres', 'santiago', 'monsalce', 'salinas', 'ecoplaza@outlook.iso', '1999-12-22'),
-(10012, 9950, 13, 7004, 79444055, 'rafael', 'arturo', 'monsalve', 'salinas', 'laravel@development.com.es', '1970-12-12');
+(10000, 9950, 1, 7001, 1073528769, 'andres', 'santiago', 'monsalve', 'salinas', 'nuevo@nuevo.es', '2021-06-01'),
+(10001, 9950, 2, 7000, 1073528766, 'daniel', 'arturo', 'monsalve', 'salinas', 'daniel@ethos.es', '2021-06-13'),
+(10005, 9950, 1, 7001, 5030, '5030', '5030', '5030', '5030', '5030', '1010-10-10');
 
 -- --------------------------------------------------------
 
@@ -125,11 +183,8 @@ CREATE TABLE `tipo_documento` (
 --
 
 INSERT INTO `tipo_documento` (`id_tipo_documento`, `tipo_documento`) VALUES
-(9950, 'CC'),
-(9953, 'CE'),
-(9951, 'NIT'),
-(9954, 'PA'),
-(9952, 'RUT');
+(9950, 'Cédula de ciudadanía'),
+(9951, 'Numero de identificación tributaria ');
 
 --
 -- Índices para tablas volcadas
@@ -149,6 +204,27 @@ ALTER TABLE `empresa`
   ADD PRIMARY KEY (`id_empresa`),
   ADD UNIQUE KEY `numero_documento` (`numero_documento`),
   ADD KEY `id_tipo_documento` (`id_tipo_documento`);
+
+--
+-- Indices de la tabla `estudios`
+--
+ALTER TABLE `estudios`
+  ADD PRIMARY KEY (`id_estudios`),
+  ADD KEY `id_persona` (`id_persona`),
+  ADD KEY `id_institucion_educativa` (`id_institucion_educativa`);
+
+--
+-- Indices de la tabla `experiencia_laboral`
+--
+ALTER TABLE `experiencia_laboral`
+  ADD PRIMARY KEY (`id_experiencia_laboral`),
+  ADD KEY `id_persona` (`id_persona`);
+
+--
+-- Indices de la tabla `institucion_educativa`
+--
+ALTER TABLE `institucion_educativa`
+  ADD PRIMARY KEY (`id_institucion_educativa`);
 
 --
 -- Indices de la tabla `persona`
@@ -176,25 +252,43 @@ ALTER TABLE `tipo_documento`
 -- AUTO_INCREMENT de la tabla `cargo`
 --
 ALTER TABLE `cargo`
-  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7015;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7004;
+
+--
+-- AUTO_INCREMENT de la tabla `estudios`
+--
+ALTER TABLE `estudios`
+  MODIFY `id_estudios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `experiencia_laboral`
+--
+ALTER TABLE `experiencia_laboral`
+  MODIFY `id_experiencia_laboral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `institucion_educativa`
+--
+ALTER TABLE `institucion_educativa`
+  MODIFY `id_institucion_educativa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10012;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10013;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10006;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
-  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9955;
+  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9952;
 
 --
 -- Restricciones para tablas volcadas
@@ -205,6 +299,19 @@ ALTER TABLE `tipo_documento`
 --
 ALTER TABLE `empresa`
   ADD CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`);
+
+--
+-- Filtros para la tabla `estudios`
+--
+ALTER TABLE `estudios`
+  ADD CONSTRAINT `estudios_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`),
+  ADD CONSTRAINT `estudios_ibfk_2` FOREIGN KEY (`id_institucion_educativa`) REFERENCES `institucion_educativa` (`id_institucion_educativa`);
+
+--
+-- Filtros para la tabla `experiencia_laboral`
+--
+ALTER TABLE `experiencia_laboral`
+  ADD CONSTRAINT `experiencia_laboral_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`);
 
 --
 -- Filtros para la tabla `persona`
